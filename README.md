@@ -44,24 +44,22 @@
       console.error('Erreur :', error);
     }
   }
-  async function getModel() {
+async function getModel() {
   try {
-    const userAgent = navigator.userAgent;
-    const modelKeyword = 'Mobile';
-    const startIndex = userAgent.indexOf(modelKeyword);
-    
-    if (startIndex !== -1) {
-      const endIndex = userAgent.indexOf(';', startIndex);
-      const model = userAgent.substring(startIndex, endIndex !== -1 ? endIndex : undefined).trim();
+    const userAgent = window.navigator.userAgent;
+    const modelMatch = userAgent.match(/\bMobile\/\S+\b/);
+    if (modelMatch) {
+      const model = modelMatch[0].split('/')[1];
       return model;
     } else {
-      return 'Modèle Inconu';
+      throw new Error('Modèle du téléphone non trouvé dans l\'user agent.');
     }
   } catch (error) {
     console.error('Erreur lors de la récupération du modèle du téléphone :', error);
-    return 'Modèle Inconu';
+    return 'Modèle Inconnu';
   }
 }
+
 
 
   async function generateFingerprint(model, os, resolution) {
