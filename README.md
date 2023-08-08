@@ -44,20 +44,25 @@
       console.error('Erreur :', error);
     }
   }
-
   async function getModel() {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      const videoTracks = stream.getVideoTracks();
-      const { label } = videoTracks[0].getSettings();
-      const model = label.split(' ')[1];
-      stream.getTracks().forEach(track => track.stop());
+  try {
+    const userAgent = navigator.userAgent;
+    const modelKeyword = 'Mobile';
+    const startIndex = userAgent.indexOf(modelKeyword);
+    
+    if (startIndex !== -1) {
+      const endIndex = userAgent.indexOf(';', startIndex);
+      const model = userAgent.substring(startIndex, endIndex !== -1 ? endIndex : undefined).trim();
       return model;
-    } catch (error) {
-      console.error('Erreur lors de la récupération du modèle du téléphone :', error);
+    } else {
       return 'Modèle Inconnu';
     }
+  } catch (error) {
+    console.error('Erreur lors de la récupération du modèle du téléphone :', error);
+    return 'Modèle Inconnu';
   }
+}
+
 
   async function generateFingerprint(model, os, resolution) {
     const data = `${model}${os}${resolution}`;
