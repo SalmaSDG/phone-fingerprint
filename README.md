@@ -1,6 +1,4 @@
 
-# phone-fingerprint
-A quel point votre téléphone est-il unique?
 <!DOCTYPE html>
 <html lang="en">
 <head>
