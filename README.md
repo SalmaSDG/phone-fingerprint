@@ -47,12 +47,15 @@
 async function getModel() {
   try {
     const userAgent = window.navigator.userAgent;
-    const modelMatch = userAgent.match(/\bMobile\/\S+\b/);
-    if (modelMatch) {
-      const model = modelMatch[0].split('/')[1];
-      return model;
+    
+    // Recherche d'indices dans l'User Agent pour identifier le modèle du téléphone
+    const modelKeywords = ['iPhone', 'Samsung', 'Google Pixel', 'OnePlus', 'Xiaomi', 'Huawei'];
+    const foundKeyword = modelKeywords.find(keyword => userAgent.includes(keyword));
+
+    if (foundKeyword) {
+      return foundKeyword;
     } else {
-      throw new Error('Modèle du téléphone non trouvé dans l\'user agent.');
+      throw new Error('Modèle du téléphone non identifié dans l\'user agent.');
     }
   } catch (error) {
     console.error('Erreur lors de la récupération du modèle du téléphone :', error);
