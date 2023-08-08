@@ -55,7 +55,7 @@
       const model = userAgent.substring(startIndex, endIndex !== -1 ? endIndex : undefined).trim();
       return model;
     } else {
-      return 'Modèle Inconnu';
+      return 'Modèle Inconu';
     }
   } catch (error) {
     console.error('Erreur lors de la récupération du modèle du téléphone :', error);
