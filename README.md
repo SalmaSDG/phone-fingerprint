@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +12,15 @@
       const resolution = `${window.screen.width}x${window.screen.height}`;
       const fingerprint = await generateFingerprint(model, os, resolution);
 
+      // Affichage des caractéristiques à l'écran
+      const characteristicsDiv = document.getElementById('characteristics');
+      characteristicsDiv.innerHTML = `
+        <p><strong>Modèle :</strong> ${model}</p>
+        <p><strong>Système d'exploitation :</strong> ${os}</p>
+        <p><strong>Résolution de l'écran :</strong> ${resolution}</p>
+        <p><strong>Empreinte :</strong> ${fingerprint}</p>
+      `;
+
       // Envoi des données au serveur
       const requestData = {
         model,
@@ -21,6 +29,7 @@
         fingerprint
       };
 
+      // Vous devrez personnaliser l'URL du serveur
       const response = await fetch('https://votre-serveur.com/enregistrement', {
         method: 'POST',
         headers: {
@@ -59,7 +68,7 @@
 </script>
 </head>
 <body>
-<button onclick="collectAndSendData()">Collecter et Envoyer les Données</button>
+<button onclick="collectAndSendData()">Collecter et Afficher les Données</button>
+<div id="characteristics"></div>
 </body>
 </html>
-
