@@ -59,7 +59,7 @@
     }
   } catch (error) {
     console.error('Erreur lors de la récupération du modèle du téléphone :', error);
-    return 'Modèle Inconnu';
+    return 'Modèle Inconu';
   }
 }
 
