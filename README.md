@@ -29,8 +29,8 @@
         fingerprint
       };
 
-      // Vous devrez personnaliser l'URL du serveur
-      const response = await fetch('https://votre-serveur.com/enregistrement', {
+
+      const response = await fetch('https://salmasdg.github.io/phone-fingerprint', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
